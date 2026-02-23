@@ -1,11 +1,9 @@
 [project]
 requires-python = ">=3.10"
-dependencies = [
-]
 name = "loading"
 version = "0.1.0"
 description = "Matrix data analysis tool"
-authors = ["Thomas CHEMIN tchemin@student.42lyon.fr"]
+authors = [{name = "Thomas CHEMIN", email = "tchemin@student.42lyon.fr"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
