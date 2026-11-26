@@ -14,10 +14,10 @@ from enum import Enum
 
 class ContactType(Enum):
     """Enumeration of possible alien contact modalities."""
-    RADIO: int = 1
-    VISUAL: int = 2
-    PHYSICAL: int = 3
-    TELEPATHIC: int = 4
+    RADIO = 1
+    VISUAL = 2
+    PHYSICAL = 3
+    TELEPATHIC = 4
 
 
 class AlienContact(BaseModel):

@@ -15,8 +15,7 @@ class AggressiveStrategy(GameStrategy):
 
     def execute_turn(self,
                      hand: Sequence[Card],
-                     battlefield: Sequence[Card]) -> Dict[
-                         str, Union[int, str, list]]:
+                     battlefield: Sequence[Card]) -> Dict[str, Any]:
         """Execute an aggressive turn.
 
         - Prefer cards with cost <= 3.
@@ -55,7 +54,7 @@ class AggressiveStrategy(GameStrategy):
                   str]] = self.prioritize_targets(list(battlefield))
         damage: int = sum(
             [card.attack for card in cards if isinstance(card, CreatureCard)])
-        turn: Dict[str, Union[int, str, list]] = {
+        turn: Dict[str, Any] = {
             "cards_played": [card.name for card in cards],
             "mana_used": sum([card.cost for card in cards]),
             "targets_attacked": targets,
@@ -99,5 +98,5 @@ class AggressiveStrategy(GameStrategy):
                     return list(available_targets)
                 return targets
 
-            except TypeError as e:
-                return [e]
+            except TypeError:
+                raise

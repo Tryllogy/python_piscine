@@ -41,7 +41,7 @@ def main() -> None:
         print("Then run this program again.")
     else:
         print("MATRIX STATUS: Welcome to the construct\n")
-        python_exec: str = sys.executable
+        python_exec = sys.executable
         env_name: str = env.split(os.sep)[-1]
         site_packages: str = f"{env}/lib/python3.11/site-packages"
         print(f"Current Python: {python_exec}")

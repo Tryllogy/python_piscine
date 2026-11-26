@@ -18,21 +18,21 @@ if __name__ == "__main__":
         print("AttributeError - not exposed")
 
     try:
-        result: str = alchemy.elements.create_water()
+        result = alchemy.elements.create_water()
         print("alchemy.elements.create_water(): " +
               f"{result}")
     except AttributeError:
         print("AttributeError - not exposed")
 
     try:
-        result: str = alchemy.elements.create_earth()
+        result = alchemy.elements.create_earth()
         print("alchemy.elements.create_earth(): " +
               f"{result}")
     except AttributeError:
         print("AttributeError - not exposed")
 
     try:
-        result: str = alchemy.elements.create_air()
+        result = alchemy.elements.create_air()
         print(
             f"alchemy.elements.create_air(): {result}")
     except AttributeError:
@@ -40,25 +40,25 @@ if __name__ == "__main__":
 
     print("\nTesting package-level access (controlled by __init__.py):")
     try:
-        result: str = alchemy.create_fire()
+        result = alchemy.create_fire()
         print("alchemy.create_fire(): ", end="")
         print(result)
     except AttributeError:
         print("AttributeError - not exposed")
     try:
-        result: str = alchemy.create_water()
+        result = alchemy.create_water()
         print("alchemy.create_water(): ", end="")
         print(result)
     except AttributeError:
         print("AttributeError - not exposed")
     try:
-        result: str = alchemy.create_earth()
+        result = alchemy.create_earth()
         print("alchemy.create_earth(): ", end="")
         print(result)
     except AttributeError:
         print("alchemy.create_earth(): AttributeError - not exposed")
     try:
-        result: str = alchemy.create_air()
+        result = alchemy.create_air()
         print("alchemy.create_air(): ", end="")
         print(result)
     except AttributeError:

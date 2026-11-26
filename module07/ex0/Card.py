@@ -3,7 +3,7 @@
 Defines interface methods for play, inspection and simple helpers.
 """
 from abc import ABC, abstractmethod
-from typing import Dict, Union
+from typing import Dict, Any
 
 
 class Card(ABC):
@@ -31,22 +31,20 @@ class Card(ABC):
 
     @abstractmethod
     def play(self,
-             game_state: Dict[str, Union[int, str]]) -> Dict[str,
-                                                             Union[str,
-                                                                   int]]:
+             game_state: Dict[str, Any]) -> Dict[str, Any]:
         """Play a Card on the battlefield.
 
         Args:
-            game_state (Dict[str, Union[int, str]]): Mutable game state
+            game_state (Dict[str, Any]): Mutable game state
             (must contain 'mana').
 
         Returns:
-            Dict[str, Union[str, int]]: Summary of the play action (card name,
+            Dict[str, Any]: Summary of the play action (card name,
             mana used, effect).
         """
 
         try:
-            play: Dict[str, Union[str, int]] = dict({
+            play: Dict[str, Any] = dict({
                 "card_played": self.name,
                 "mana_used": self.cost,
                 "effect": "Card played on terrain"
@@ -56,13 +54,13 @@ class Card(ABC):
         except TypeError as e:
             raise TypeError(e)
 
-    def get_card_info(self) -> Dict[str, Union[str, int]]:
+    def get_card_info(self) -> Dict[str, Any]:
         """Get the information of the Card
 
         Returns:
             dict: information about the Card
         """
-        info: Dict[str, Union[str, int]] = dict({
+        info: Dict[str, Any] = dict({
             "name": self.name,
             "cost": self.cost,
             "rarity": self.rarity,

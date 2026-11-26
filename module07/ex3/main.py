@@ -6,9 +6,7 @@ simulates a turn and prints a short report.
 from ex3.FantasyCardFactory import FantasyCardFactory
 from ex3.AggressiveStrategy import AggressiveStrategy
 from typing import List
-from ex0.CreatureCard import CreatureCard
-from ex1.ArtifactCard import ArtifactCard
-from ex1.SpellCard import SpellCard
+from ex0.Card import Card
 from ex3.GameEngine import GameEngine
 
 
@@ -29,9 +27,9 @@ def main() -> None:
         print("Strategy: AggressiveStrategy")
         factory = FantasyCardFactory()
         strategy = AggressiveStrategy()
-        creatures: List[CreatureCard] = []
-        spells: List[ArtifactCard] = []
-        artifacts: List[SpellCard] = []
+        creatures: List[Card] = []
+        spells: List[Card] = []
+        artifacts: List[Card] = []
         for _ in range(2):
             creatures.append(factory.create_creature())
         spells.append(factory.create_spell())

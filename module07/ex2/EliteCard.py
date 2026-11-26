@@ -1,7 +1,7 @@
 from ex0.Card import Card
 from ex2.Combatable import Combatable
 from ex2.Magical import Magical
-from typing import Dict, Union
+from typing import Dict, Any
 
 
 class EliteCard(Card, Combatable, Magical):
@@ -41,12 +41,11 @@ class EliteCard(Card, Combatable, Magical):
         self.mana: int = mana
 
     def play(self,
-             game_state: Dict[str, Union[int, str]]) -> Dict[str, Union[str,
-                                                                        int]]:
+             game_state: Dict[str, Any]) -> Dict[str, Any]:
         """Play this elite card onto the battlefield and deduct mana."""
 
         try:
-            play: Dict[str, Union[str, int]] = dict({
+            play: Dict[str, Any] = dict({
                 "card_played": self.name,
                 "mana_used": self.cost,
                 "effect": "EliteCard played on terrain"
@@ -56,14 +55,14 @@ class EliteCard(Card, Combatable, Magical):
         except TypeError as e:
             raise TypeError(e)
 
-    def attack(self, target: Combatable) -> Dict[str, Union[str, int, bool]]:
+    def attack(self, target: Combatable) -> Dict[str, Any]:
         """Perform an attack against a Combatable target and return
         attack summary."""
 
         if not isinstance(target, Combatable):
             raise TypeError("Target is not Combatable")
         try:
-            attack: Dict[str, Union[str, int, bool]] = dict({
+            attack: Dict[str, Any] = dict({
                 "attacker": self.name,
                 "target": target.name,
                 "damage": self.damage,
@@ -74,7 +73,7 @@ class EliteCard(Card, Combatable, Magical):
         except TypeError as e:
             raise TypeError(e)
 
-    def defend(self, incoming_damage: int) -> Dict[str, Union[str, int, bool]]:
+    def defend(self, incoming_damage: int) -> Dict[str, Any]:
         """Defend against incoming damage and return defense summary."""
 
         try:
@@ -82,7 +81,7 @@ class EliteCard(Card, Combatable, Magical):
             if damage_taken < 0:
                 damage_taken = 0
             self.health -= damage_taken
-            attack: Dict[str, Union[str, int, bool]] = dict({
+            attack: Dict[str, Any] = dict({
                 "defender": self.name,
                 "damage_taken": damage_taken,
                 "damage_blocked": self.defense,
@@ -92,7 +91,7 @@ class EliteCard(Card, Combatable, Magical):
         except TypeError as e:
             raise TypeError(e)
 
-    def get_combat_stats(self) -> Dict[str, Union[str, int]]:
+    def get_combat_stats(self) -> Dict[str, Any]:
         """Return combat statistics for this elite card."""
 
         stat = dict({
@@ -106,10 +105,7 @@ class EliteCard(Card, Combatable, Magical):
 
     def cast_spell(self,
                    spell_name: str,
-                   targets: list[Combatable]) -> Dict[str,
-                                                      Union[str,
-                                                            int,
-                                                            list]]:
+                   targets: list[Combatable]) -> Dict[str, Any]:
         """Cast a spell affecting multiple targets and consume mana."""
 
         try:
@@ -125,7 +121,7 @@ class EliteCard(Card, Combatable, Magical):
         except TypeError as e:
             raise TypeError(e)
 
-    def channel_mana(self, amount: int) -> Dict[str, Union[str, int]]:
+    def channel_mana(self, amount: int) -> Dict[str, Any]:
         """Channel the given amount of mana into this card."""
 
         try:
@@ -138,7 +134,7 @@ class EliteCard(Card, Combatable, Magical):
         except TypeError as e:
             raise TypeError(e)
 
-    def get_magic_stats(self) -> Dict[str, Union[str, int]]:
+    def get_magic_stats(self) -> Dict[str, Any]:
         """Return magic-related statistics for this card."""
 
         stat = dict({

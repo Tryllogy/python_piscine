@@ -12,7 +12,7 @@ def garden_operations() -> None:
 
     try:
         print("Testing ZeroDivisionError...")
-        return 5 / 0
+        5 / 0
     except ZeroDivisionError as e:
         print(f"Caught ZeroDivisionError: {e}\n")
 

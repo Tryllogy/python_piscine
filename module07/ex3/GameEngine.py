@@ -1,7 +1,7 @@
 from ex3.CardFactory import CardFactory
 from ex3.GameStrategy import GameStrategy
 from ex0.Card import Card
-from typing import List, Optional, Dict, Union
+from typing import List, Optional, Dict, Any
 from ex1.Deck import Deck
 
 
@@ -39,25 +39,29 @@ class GameEngine:
         self.factory = factory
         self.strategy = strategy
 
-    def simulate_turn(self) -> Dict[str, Union[int, str, list]]:
+    def simulate_turn(self) -> Dict[str, Any]:
         """Simulate a single turn using the configured strategy.
 
         Returns:
             dict: Summary of the simulated turn provided by the strategy.
         """
+        if self.strategy is None:
+            raise RuntimeError("Engine not configured")
         turn = self.strategy.execute_turn(self.hand, self.battlefield)
         self.card_played += len(turn["cards_played"])
         self.total_damage += turn["damage_dealt"]
         self.turns += 1
         return turn
 
-    def get_engine_status(self) -> Dict[str, Union[int, str]]:
+    def get_engine_status(self) -> Dict[str, Any]:
         """Return a summary of the engine's current aggregated status.
 
         Returns:
             dict: Contains keys 'turns_simulated', 'strategy_used',
             'total_damage', 'cards_created'.
         """
+        if self.strategy is None:
+            raise RuntimeError("Engine not configured")
         status = {
             "turns_simulated": self.turns,
             "strategy_used": self.strategy.get_strategy_name(),

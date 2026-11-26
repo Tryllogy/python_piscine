@@ -27,7 +27,7 @@ def test_watering_system() -> None:
 
     print("\nTesting normal watering...")
     try:
-        plants = ["tomato", "lettuce", "carrots"]
+        plants: List[Optional[str]] = ["tomato", "lettuce", "carrots"]
         water_plants(plants)
     except Exception as e:
         print(f"Error: Cannot water {e} - invalid plant!")

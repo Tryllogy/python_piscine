@@ -1,7 +1,7 @@
 from ex0.Card import Card
 from ex2.Combatable import Combatable
 from ex4.Rankable import Rankable
-from typing import Dict, Union, List
+from typing import Dict, Any
 
 
 class TournamentCard(Card, Combatable, Rankable):
@@ -27,8 +27,7 @@ class TournamentCard(Card, Combatable, Rankable):
         Rankable.__init__(self, rating)
         self.id: str = card_id
 
-    def play(self, game_state: Dict[
-            str, Union[int, str]]) -> Dict[str, Union[str, int]]:
+    def play(self, game_state: Dict[str, Any]) -> Dict[str, Any]:
         """Play this card, applying its cost to the provided game state.
 
         Args:
@@ -38,7 +37,7 @@ class TournamentCard(Card, Combatable, Rankable):
             dict: A short description of the play action.
         """
         try:
-            play: Dict[str, Union[str, int]] = {
+            play: Dict[str, Any] = {
                 "card_played": self.name,
                 "mana_used": self.cost,
                 "effect": "EliteCard played on terrain"
@@ -48,7 +47,7 @@ class TournamentCard(Card, Combatable, Rankable):
         except TypeError as e:
             raise TypeError(e)
 
-    def attack(self, target: Combatable) -> Dict[str, Union[str, int, bool]]:
+    def attack(self, target: Combatable) -> Dict[str, Any]:
         """Attack a Combatable target.
 
         Args:
@@ -61,7 +60,7 @@ class TournamentCard(Card, Combatable, Rankable):
         if not isinstance(target, Combatable):
             raise TypeError("Target is not Combatable")
         try:
-            attack: Dict[str, Union[str, int, bool]] = {
+            attack: Dict[str, Any] = {
                 "attacker": self.name,
                 "target": target.name,
                 "damage": self.damage,
@@ -71,7 +70,7 @@ class TournamentCard(Card, Combatable, Rankable):
         except TypeError as e:
             raise TypeError(e)
 
-    def defend(self, incoming_damage: int) -> Dict[str, Union[str, int, bool]]:
+    def defend(self, incoming_damage: int) -> Dict[str, Any]:
         """Defend against incoming damage and update health accordingly.
 
         Args:
@@ -85,7 +84,7 @@ class TournamentCard(Card, Combatable, Rankable):
             damage = incoming_damage - self.defense
             if damage < 0:
                 damage = 0
-            attack: Dict[str, Union[str, int, bool]] = {
+            attack: Dict[str, Any] = {
                 "defender": self.name,
                 "damage_taken": damage,
                 "damage_blocked": self.defense,
@@ -96,11 +95,10 @@ class TournamentCard(Card, Combatable, Rankable):
         except TypeError as e:
             raise TypeError(e)
 
-    def get_combat_stats(self) -> Dict[str, Union[str, int]]:
+    def get_combat_stats(self) -> Dict[str, Any]:
         """Return combat-related statistics for this card."""
-        stat: Dict[str, Union[str, int]] = {
+        stat: Dict[str, Any] = {
             "name": self.name,
-            "combat_type": self.combat_type,
             "defense": self.defense,
             "attack": self.damage,
             "health": self.health
@@ -116,10 +114,10 @@ class TournamentCard(Card, Combatable, Rankable):
         self.rating = 1000 + (self.wins * 16) - (self.losses * 16)
         return self.rating
 
-    def get_tournament_stats(self) -> Dict[str, Union[str, int, List[str]]]:
+    def get_tournament_stats(self) -> Dict[str, Any]:
         """Return a dictionary of tournament-related stats
         for external reporting."""
-        stats: Dict[str, Union[str, int, List[str]]] = {
+        stats: Dict[str, Any] = {
             "id": self.id,
             "name": self.name,
             "wins": self.wins,

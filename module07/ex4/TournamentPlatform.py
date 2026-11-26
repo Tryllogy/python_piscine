@@ -1,5 +1,5 @@
 from ex4.TournamentCard import TournamentCard
-from typing import List, Dict, Union
+from typing import List, Dict, Any
 
 
 class TournamentPlatform:
@@ -28,7 +28,7 @@ class TournamentPlatform:
         return f"Card {card.name} with ID {card.id} registered."
 
     def create_match(self, card1_id: str,
-                     card2_id: str) -> Dict[str, Union[str, int]]:
+                     card2_id: str) -> Dict[str, Any]:
         """Simulate a match between two registered cards identified by id.
 
         Args:
@@ -47,7 +47,7 @@ class TournamentPlatform:
                 card for card in self.cards if card.id == card2_id][0]
             attack = creature1.attack(creature2)
             attack2 = creature2.attack(creature1)
-            match_summary: Dict[str, Union[str, int]] = {}
+            match_summary: Dict[str, Any] = {}
             if attack["defense"]["still_alive"] is False \
                     and attack2["defense"]["still_alive"] is True:
                 creature1.update_wins(1)
@@ -69,7 +69,7 @@ class TournamentPlatform:
         except IndexError:
             return {"error": "One or both cards not found"}
 
-    def get_leaderboard(self) -> List[Dict[str, Union[str, int]]]:
+    def get_leaderboard(self) -> List[Dict[str, Any]]:
         """Return a leaderboard of registered cards sorted by rating.
 
         Returns:
@@ -77,7 +77,7 @@ class TournamentPlatform:
             rating, wins, losses.
         """
         cards = sorted(self.cards, key=lambda c: c.rating, reverse=True)
-        leaderboard: List[Dict[str, Union[str, int]]] = []
+        leaderboard: List[Dict[str, Any]] = []
         for rank, card in enumerate(cards, start=1):
             leaderboard.append({
                 "rank": rank,
@@ -89,7 +89,7 @@ class TournamentPlatform:
             })
         return leaderboard
 
-    def generate_tournament_report(self) -> Dict[str, Union[int, float, str]]:
+    def generate_tournament_report(self) -> Dict[str, Any]:
         """Generate a brief report about the tournament platform.
 
         Returns:
@@ -101,7 +101,7 @@ class TournamentPlatform:
             sum(card.rating
                 for card
                 in self.cards) / total_cards) if total_cards > 0 else 0.0
-        report: Dict[str, Union[int, float, str]] = {
+        report: Dict[str, Any] = {
             "total_cards": total_cards,
             "match_played": self.match_played,
             "average_rating": average_rating,

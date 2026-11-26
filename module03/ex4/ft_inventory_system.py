@@ -26,18 +26,18 @@ def main() -> None:
 
     print("=== Inventory System Analysis ===")
     total_item: int = 0
-    for item in inventory.values():
-        total_item += item
+    for count in inventory.values():
+        total_item += count
     print(f"Total items in inventory: {total_item}")
     print(f"Unique item types: {len(inventory)}")
 
     print("\n=== Current Inventory ===")
     sort: List[Tuple[str, int]] = sorted(
         inventory.items(), key=lambda x: x[1], reverse=True)
-    for item in sort:
-        unit_str = "unit" if item[1] == 1 else "units"
-        print(f"{item[0]}: {item[1]} {unit_str}"
-              + f" ({(item[1]/total_item * 100):.1f}%)")
+    for name, count in sort:
+        unit_str = "unit" if count == 1 else "units"
+        print(f"{name}: {count} {unit_str}"
+              + f" ({(count/total_item * 100):.1f}%)")
 
     print("\n=== Inventory Statistics ===")
     most_abundant_unit_str = "unit" if sort[0][1] == 1 else "units"

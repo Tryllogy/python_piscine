@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Union, List
+from typing import Dict, List, Any
 from ex2.Combatable import Combatable
 
 
@@ -12,10 +12,7 @@ class Magical(ABC):
 
     @abstractmethod
     def cast_spell(self, spell_name: str,
-                   targets: List[Combatable]) -> Dict[str,
-                                                      Union[str,
-                                                            int,
-                                                            List[str]]]:
+                   targets: List[Combatable]) -> Dict[str, Any]:
         """Cast a spell on multiple targets.
 
         Args:
@@ -23,28 +20,28 @@ class Magical(ABC):
             targets (List[Combatable]): Targets to affect.
 
         Returns:
-            Dict[str, Union[str, int, List[str]]]: Summary of the spell cast.
+            Dict[str, Any]: Summary of the spell cast.
         """
         pass
 
     @abstractmethod
-    def channel_mana(self, amount: int) -> Dict[str, Union[str, int]]:
+    def channel_mana(self, amount: int) -> Dict[str, Any]:
         """Channel mana into this card.
 
         Args:
             amount (int): Amount of mana to channel.
 
         Returns:
-            Dict[str, Union[str, int]]: Summary including channeled amount
+            Dict[str, Any]: Summary including channeled amount
             and total mana.
         """
         pass
 
     @abstractmethod
-    def get_magic_stats(self) -> Dict[str, Union[str, int]]:
+    def get_magic_stats(self) -> Dict[str, Any]:
         """Get this card's magic-related statistics.
 
         Returns:
-            Dict[str, Union[str, int]]: Magic stats summary.
+            Dict[str, Any]: Magic stats summary.
         """
         pass

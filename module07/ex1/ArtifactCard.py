@@ -1,4 +1,4 @@
-from typing import Dict, Union
+from typing import Dict, Any
 from ex0.Card import Card
 
 
@@ -28,21 +28,19 @@ class ArtifactCard(Card):
         self.effect: str = effect
 
     def play(self,
-             game_state: Dict[str, Union[int, str]]) -> Dict[str,
-                                                             Union[str,
-                                                                   int]]:
+             game_state: Dict[str, Any]) -> Dict[str, Any]:
         """Play an artifact and apply its mana cost.
 
         Args:
-            game_state (Dict[str, Union[int, str]]): Mutable game state
+            game_state (Dict[str, Any]): Mutable game state
             containing 'mana'.
 
         Returns:
-            Dict[str, Union[str, int]]: Summary of the play action.
+            Dict[str, Any]: Summary of the play action.
         """
 
         try:
-            play: Dict[str, Union[str, int]] = {
+            play: Dict[str, Any] = {
                 "card_played": self.name,
                 "mana_used": self.cost,
                 "effect": self.effect
@@ -52,7 +50,7 @@ class ArtifactCard(Card):
         except TypeError as e:
             raise (e)
 
-    def activate_ability(self) -> Dict[str, Union[str, int]]:
+    def activate_ability(self) -> Dict[str, Any]:
         """Activate the ability described in the effect string.
 
         Effect should be formatted as 'duration:effect'; returns parsed data.

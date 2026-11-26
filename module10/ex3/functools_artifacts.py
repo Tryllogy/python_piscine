@@ -85,11 +85,11 @@ def main() -> None:
     try:
         reducer: int = spell_reducer(spell_powers, operations[0])
         print("Sum: ", reducer)
-        reducer: int = spell_reducer(spell_powers, operations[1])
+        reducer = spell_reducer(spell_powers, operations[1])
         print("Product: ", reducer)
-        reducer: int = spell_reducer(spell_powers, operations[2])
+        reducer = spell_reducer(spell_powers, operations[2])
         print("Max: ", reducer)
-        reducer: int = spell_reducer(spell_powers, operations[3])
+        reducer = spell_reducer(spell_powers, operations[3])
         print("Min: ", reducer)
     except TypeError as e:
         print(f"Error spell reducer: {e}")

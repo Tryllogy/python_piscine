@@ -1,4 +1,4 @@
-from typing import List, Dict, Union
+from typing import List, Dict, Any
 import random
 from ex3.CardFactory import CardFactory
 from ex0.Card import Card
@@ -15,7 +15,7 @@ class FantasyCardFactory(CardFactory):
         """Initialize a FantasyCardFactory with predefined card templates"""
 
         super().__init__()
-        self.creatures: List[Dict[str, Union[str, int]]] = [
+        self.creatures: List[Dict[str, Any]] = [
             {"name": "Fire Dragon", "cost": 5,
                 "rarity": "Legendary", "attack": 7, "health": 5},
             {"name": "Goblin Warrior", "cost": 2,
@@ -23,7 +23,7 @@ class FantasyCardFactory(CardFactory):
             {"name": "Ice Wizard", "cost": 4,
                 "rarity": "Rare", "attack": 3, "health": 4}
         ]
-        self.spells: List[Dict[str, Union[str, int]]] = [
+        self.spells: List[Dict[str, Any]] = [
             {"name": "Lightning Bolt", "cost": 3,
                 "rarity": "Common", "effect_type": "damage"},
             {"name": "Healing Potion", "cost": 2,
@@ -31,7 +31,7 @@ class FantasyCardFactory(CardFactory):
             {"name": "Fireball", "cost": 4,
                 "rarity": "Uncommon", "effect_type": "damage"}
         ]
-        self.artifacts: List[Dict[str, Union[str, int]]] = [
+        self.artifacts: List[Dict[str, Any]] = [
             {"name": "Mana Crystal", "cost": 2, "rarity": "Common",
                 "durability": 5, "effect": "Permanent: +1 mana per turn"},
             {"name": "Sword of Power", "cost": 3, "rarity": "Uncommon",
@@ -159,9 +159,7 @@ class FantasyCardFactory(CardFactory):
             raise TypeError(e)
 
     def create_themed_deck(self,
-                           size: int) -> Dict[str, List[Dict[str,
-                                                             Union[str,
-                                                                   int]]]]:
+                           size: int) -> Dict[str, List[Dict[str, Any]]]:
         """Build a themed deck dictionary containing lists
         of raw card templates.
 
@@ -172,9 +170,9 @@ class FantasyCardFactory(CardFactory):
             dict: Dictionary with keys 'creatures', 'spells', 'artifacts'
             and values lists of templates.
         """
-        deck = {"creatures": [],
-                "spells": [],
-                "artifacts": []}
+        deck: Dict[str, List[dict]] = {"creatures": [],
+                                       "spells": [],
+                                       "artifacts": []}
         for _ in range(size):
             deck["creatures"].append(random.choice(self.creatures))
             deck["spells"].append(random.choice(self.spells))

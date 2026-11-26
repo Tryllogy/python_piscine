@@ -13,11 +13,11 @@ from typing_extensions import Self
 
 class Rank(Enum):
     """Enumeration of possible crew ranks, with increasing seniority values."""
-    CADET: int = 1
-    OFFICER: int = 2
-    LIEUTENANT: int = 3
-    CAPTAIN: int = 4
-    COMMANDER: int = 5
+    CADET = 1
+    OFFICER = 2
+    LIEUTENANT = 3
+    CAPTAIN = 4
+    COMMANDER = 5
 
 
 class CrewMember(BaseModel):

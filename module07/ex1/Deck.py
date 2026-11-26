@@ -2,7 +2,7 @@ from ex0.Card import Card
 from ex0.CreatureCard import CreatureCard
 from ex1.SpellCard import SpellCard
 from ex1.ArtifactCard import ArtifactCard
-from typing import List, Dict, Union
+from typing import List, Dict, Any
 from random import shuffle
 
 
@@ -74,11 +74,11 @@ class Deck:
             raise IndexError("Cannot draw from empty deck")
         return self.cards.pop(0)
 
-    def get_deck_stats(self) -> Dict[str, Union[int, float]]:
+    def get_deck_stats(self) -> Dict[str, Any]:
         """Get detailed statistics about the deck composition.
 
         Returns:
-            Dict[str, Union[int, float]]: total_cards, creatures, spells,
+            Dict[str, Any]: total_cards, creatures, spells,
             artifacts, avg_cost
         """
 

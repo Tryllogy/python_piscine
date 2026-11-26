@@ -1,5 +1,5 @@
 from ex0.Card import Card
-from typing import Dict, Union, List
+from typing import Dict, List, Any
 
 
 class SpellCard(Card):
@@ -27,21 +27,19 @@ class SpellCard(Card):
         self.effect_type: str = effect_type
 
     def play(self,
-             game_state: Dict[str, Union[int, str]]) -> Dict[str,
-                                                             Union[str,
-                                                                   int]]:
+             game_state: Dict[str, Any]) -> Dict[str, Any]:
         """Play a spell and deduct mana from the game state.
 
         Args:
-            game_state (Dict[str, Union[int, str]]): Mutable game state
+            game_state (Dict[str, Any]): Mutable game state
             containing 'mana'.
 
         Returns:
-            Dict[str, Union[str, int]]: Summary of the play.
+            Dict[str, Any]: Summary of the play.
         """
 
         try:
-            play: Dict[str, Union[str, int]] = {
+            play: Dict[str, Any] = {
                 "card_played": self.name,
                 "mana_used": self.cost,
                 "effect": self.effect_type
@@ -51,23 +49,22 @@ class SpellCard(Card):
         except TypeError as e:
             raise (e)
 
-    def resolve_effect(self, targets: List[Card]) -> Dict[str,
-                                                          Union[str, int]]:
+    def resolve_effect(self, targets: List[Any]) -> Dict[str, Any]:
         """Resolve the effect of this spell against the given targets.
 
         Extracts a numeric value from the effect_type string and applies
         damage/heal/buff/debuff accordingly.
 
         Args:
-            targets (List[Card]): Targets to apply the effect to.
+            targets (List[Any]): Creature-like targets (health, attack).
 
         Returns:
-            Dict[str, Union[str, int]]: Summary including card, targets,
+            Dict[str, Any]: Summary including card, targets,
             value and effect kind.
         """
 
         try:
-            effect = {
+            effect: Dict[str, Any] = {
                 "card_played": self.name,
                 "targets": [target.name for target in targets]
             }

@@ -1,5 +1,5 @@
 from ex0.Card import Card
-from typing import Dict, Union
+from typing import Dict, Any
 
 
 class CreatureCard(Card):
@@ -31,21 +31,19 @@ class CreatureCard(Card):
         self.health: int = health
 
     def play(self,
-             game_state: Dict[str, Union[int, str]]) -> Dict[str,
-                                                             Union[str,
-                                                                   int]]:
+             game_state: Dict[str, Any]) -> Dict[str, Any]:
         """Summon this creature to the battlefield.
 
         Args:
-            game_state (Dict[str, Union[int, str]]): The mutable game state
+            game_state (Dict[str, Any]): The mutable game state
             (must contain 'mana').
 
         Returns:
-            Dict[str, Union[str, int]]: Summary of the play action.
+            Dict[str, Any]: Summary of the play action.
         """
 
         try:
-            play: Dict[str, Union[str, int]] = dict({
+            play: Dict[str, Any] = dict({
                 "card_played": self.name,
                 "mana_used": self.cost,
                 "effect": "Creature summoned to battlefield"
@@ -56,22 +54,19 @@ class CreatureCard(Card):
             raise TypeError(e)
 
     def attack_target(self,
-                      target: "CreatureCard") -> Dict[str,
-                                                      Union[str,
-                                                            int,
-                                                            bool]]:
+                      target: "CreatureCard") -> Dict[str, Any]:
         """Attack a target creature and return the attack summary.
 
         Args:
             target (CreatureCard): The creature that is attacked.
 
         Returns:
-            Dict[str, Union[str, int, bool]]: Summary including attacker,
+            Dict[str, Any]: Summary including attacker,
             target, damage and whether the attack would kill.
         """
 
         try:
-            attack: Dict[str, Union[str, int, bool]] = dict({
+            attack: Dict[str, Any] = dict({
                 "attacker": self.name,
                 "target": target.name,
                 "damage_dealt": self.attack,
@@ -98,14 +93,14 @@ class CreatureCard(Card):
         except TypeError as e:
             raise TypeError(e)
 
-    def get_card_info(self) -> Dict[str, Union[str, int]]:
+    def get_card_info(self) -> Dict[str, Any]:
         """Get the information of the Creature
 
         Returns:
             dict: information about the Creature
         """
 
-        info: Dict[str, Union[str, int]] = dict({
+        info: Dict[str, Any] = dict({
             "name": self.name,
             "cost": self.cost,
             "rarity": self.rarity,

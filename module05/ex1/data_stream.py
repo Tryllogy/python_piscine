@@ -128,7 +128,7 @@ class SensorStream(DataStream):
             List[Any]: the data filtered
         """
 
-        tmp: Union[List[float], str] = list(self.stats[temp]
+        tmp: Union[List[float], str] = list(float(self.stats[temp])
                                             for temp
                                             in self.stats
                                             if temp == 'temp')
@@ -229,13 +229,13 @@ class TransactionStream(DataStream):
         """
 
         buy: int = sum([
-            self.stats[buy]
+            int(self.stats[buy])
             for buy
             in self.stats
             if "buy" in buy
         ])
         sell: int = sum([
-            self.stats[buy]
+            int(self.stats[buy])
             for buy
             in self.stats
             if "sell" in buy
